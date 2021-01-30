@@ -39,9 +39,22 @@ router.get('/', (req, res) => {
     });
 });
 
-// renders the login page by fetching the login.handlebars file in 'views'
+router.get('/', (req, res) => {
+  console.log(req.session);
+
+  // other logic...
+});
+
 router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
   res.render('login');
 });
+
+
+
 
 module.exports = router;
